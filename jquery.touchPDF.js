@@ -72,6 +72,7 @@
 	* @property {string} [loadingHTML="Loading PDF"] Text or HTML displayed on white page shown before document is loaded 
 	* @property {function} [loadingHeight=841] Height in px of white page shown before document is loaded 
 	* @property {function} [loadingWidth=595] Width in px of white page shown before document is loaded 
+	* @property {object} [pdfJSOptions={}] Options to be passed to the pdf.js constructor
 	*/
 	var defaults = {
 		source: null,
@@ -90,7 +91,8 @@
 		changed: null,
 		loadingHeight: 841,
 		loadingWidth: 595,
-		loadingHTML: "Loading PDF"
+		loadingHTML: "Loading PDF",
+		pdfJSOptions: {}
 	};
 
 
@@ -504,7 +506,8 @@
 			if (state != INIT) return;
 			state = LOADING;
 
-			PDFJS.getDocument(options.source).then(function (pdfDoc_) {
+			var initOptions = $.extend({}, options.pdfJSOptions, {url: options.source})
+			PDFJS.getDocument(initOptions).then(function (pdfDoc_) {
 				pdfDoc = pdfDoc_;
 				totalPages = pdfDoc.numPages;
 				if (totalPages < 1) return;
