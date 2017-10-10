@@ -387,11 +387,11 @@
 			if (!options.disableZoom) {
 
           		$drag.panzoom({
-          			contain: 'invert',
+          			contain: false,
           			minScale: 1, 
           			disablePan: true,
           			increment: 0.25,
-          			maxScale: 2,
+          			maxScale: 3,
           			onChange: function() {
           				linksDisabled = true;
           				$drag.panzoom("option", "disablePan", false);
@@ -648,12 +648,12 @@
 				.css("height", TOOLBAR_HEIGHT)
 				.css("left", tabWidth + BORDER_WIDTH);
 			
-			$viewer
+			/*$viewer
 				.css("width", pdfWidth)
 				.css("height", pdfHeight)
 				.css("left", tabWidth)
 				.css("top", TOOLBAR_HEIGHT)
-				.css("border-width", BORDER_WIDTH);
+				.css("border-width", BORDER_WIDTH);*/
 
 			$drag
 				.css("width", pdfWidth)
